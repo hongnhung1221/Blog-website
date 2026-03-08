@@ -10,6 +10,7 @@ passport.use(
       clientSecret: keys.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
       scope: ["profile", "email"],
+      proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -57,8 +58,8 @@ passport.use(
       } catch (error) {
         console.log(error);
       }
-    }
-  )
+    },
+  ),
 );
 
 // passport.serializeUser((user, done) => {
