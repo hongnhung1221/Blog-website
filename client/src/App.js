@@ -17,8 +17,6 @@ import TopicPage from "./pages/TopicPage";
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
 
-  inject();
-
   return (
     <div className="App">
       <Routes>
