@@ -70,12 +70,6 @@ passport.deserializeUser(async (id, done) => {
     console.log("Đang giải mã User ID:", id);
 
     const foundUser = await User.findById(id);
-
-    if (!foundUser) {
-      console.log("Không tìm thấy User này trong DB Atlas!");
-      return done(null, false);
-    }
-
     console.log(foundUser);
 
     done(null, foundUser);

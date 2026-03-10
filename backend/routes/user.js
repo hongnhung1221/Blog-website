@@ -142,6 +142,15 @@ router.get("/login/failed", (req, res) => {
 });
 
 router.post("/login/success", async (req, res) => {
+  // --- ĐOẠN DEBUG ---
+  console.log("--- DEBUG LOGIN SUCCESS ---");
+  console.log("1. Session ID:", req.sessionID);
+  console.log("2. Cookies nhận được:", req.cookies);
+  console.log("3. Passport User trong Session:", req.session?.passport?.user);
+  console.log("4. Kiểm tra isAuthenticated():", req.isAuthenticated());
+  console.log("5. Dữ liệu req.user:", req.user);
+  // ------------------
+
   if (req.isAuthenticated()) {
     const token = generateToken({ id: req.user._id.toString() }, "15d");
     return res.status(201).send({
@@ -153,10 +162,18 @@ router.post("/login/success", async (req, res) => {
       bookmarks: req.user.bookmarks,
     });
   } else {
+    // In ra lý do chi tiết cho Frontend thấy luôn (chỉ dùng để debug)
     return res.status(401).json({
       success: false,
-      message: "Un-successfull",
-      user: null,
+      message: "Un-successful",
+      reason: !req.session ? "No session found" : 
+              !req.session.passport ? "Passport not initialized in session" : 
+              "User not found in session",
+      debug: {
+        hasCookies: !!req.cookies,
+        hasSession: !!req.session,
+        sessionContent: req.session
+      }
     });
   }
 });

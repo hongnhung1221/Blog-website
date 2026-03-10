@@ -34,7 +34,7 @@ function HomePage({ user, category }) {
           navigate("/");
         })
         .catch((err) => {
-          // console.log(err);
+          console.log(err);
         });
     }
   };
