@@ -10,7 +10,6 @@ import Profile from "./pages/Profile";
 import ArticlePage from "./pages/ArticlePage";
 import ResetPassword from "./pages/ResetPassword";
 import ProfileOfOtherUser from "./components/profileOftherUser/ProfileOfOtherUser";
-import { inject } from '@vercel/analytics';
 import Intogoogle from "./components/Auth/intogoogle";
 import Not_found from "./pages/not_found";
 import Editpost from "./pages/write/Editpost";
