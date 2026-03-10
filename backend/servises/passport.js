@@ -76,6 +76,8 @@ passport.deserializeUser(async (id, done) => {
       return done(null, false);
     }
 
+    console.log(foundUser);
+
     done(null, foundUser);
   } catch (err) {
     console.error("Lỗi hệ thống khi deserialize:", err);
