@@ -15,7 +15,7 @@ function HomePage({ user, category }) {
   const handleLoad = async () => {
     if (user === null || user === undefined) {
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/login/success`, {
-        method: "GET",
+        method: "POST",
         credentials: "include",
         withCredentials: true,
         headers: {

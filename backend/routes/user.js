@@ -1,4 +1,3 @@
-
 const express = require("express");
 const keys = require("../config/keys");
 
@@ -33,23 +32,20 @@ const {
   likes,
   checklikes,
   deletelikes,
-  showLikemark
+  showLikemark,
 } = require("../controllers/user");
 const {
   sendmail,
   checkifverify,
   verifycode,
-  checkotpv
-} = require("../controllers/verifyemail")
+  checkotpv,
+} = require("../controllers/verifyemail");
 
-const {
-  google_auth,
-  google_auth_callback,
-} = require("../controllers/Auth")
+const { google_auth, google_auth_callback } = require("../controllers/Auth");
 
-var passport = require('passport')
-const OAuthStrategy = require('passport-oauth').OAuthStrategy;
-var GoogleStrategy = require('passport-google-oidc');
+var passport = require("passport");
+const OAuthStrategy = require("passport-oauth").OAuthStrategy;
+var GoogleStrategy = require("passport-google-oidc");
 
 const router = express.Router();
 const app = express();
@@ -90,7 +86,6 @@ router.post("/searchresult", searchresult);
 router.post("/checkfollow", checkfollowing);
 router.post("/changeabout", changeabout);
 
-
 const register_google = async (req) => {
   try {
     const { name, temail, password, image } = req.body;
@@ -98,8 +93,7 @@ const register_google = async (req) => {
     const check = await User.findOne({ temail });
     if (check) {
       return res.status(400).json({
-        message:
-          "This email already exists,try again with a different email",
+        message: "This email already exists,try again with a different email",
       });
     }
 
@@ -109,7 +103,7 @@ const register_google = async (req) => {
       email: temail,
       password: hashed_password,
       verify: true,
-      picture: image
+      picture: image,
     }).save();
     const token = generateToken({ id: user._id.toString() }, "15d");
     res.send({
@@ -123,19 +117,22 @@ const register_google = async (req) => {
     // console.log(error);
     return res.status(500).json({ message: error.message });
   }
-}
+};
 
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] }),
+);
 
-router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-
-router.get("/auth/google/callback", passport.authenticate("google", {
-  failureRedirect: `${keys.FRONTEND_URL}/login`
-}),
-(req, res) => {
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: `${keys.FRONTEND_URL}/login`,
+  }),
+  (req, res) => {
     return res.redirect(`${keys.FRONTEND_URL}/`);
-  }
-)
-
+  },
+);
 
 router.get("/login/failed", (req, res) => {
   res.status(401).json({
@@ -145,6 +142,8 @@ router.get("/login/failed", (req, res) => {
 });
 
 router.post("/login/success", async (req, res) => {
+  console.log("USER:", req.user);
+  console.log("AUTH:", req.isAuthenticated());
   if (req.isAuthenticated()) {
     const token = generateToken({ id: req.user._id.toString() }, "15d");
     return res.status(201).send({
@@ -155,10 +154,7 @@ router.post("/login/success", async (req, res) => {
       likes: req.user.likes,
       bookmarks: req.user.bookmarks,
     });
-
-
   } else {
-
     return res.status(401).json({
       success: false,
       message: "Un-successfull",
@@ -174,14 +170,12 @@ router.get("/logout", async (req, res) => {
         return res.status(400).json("Couldn't logout");
       }
     });
-    res.cookie('session', '', { expires: new Date(0), });
+    res.cookie("session", "", { expires: new Date(0) });
     res.clearCookie("sessionId");
     res.status(200).json({ success: true });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 });
-
-
 
 module.exports = router;
