@@ -14,6 +14,10 @@ require("./servises/passport");
 const app = express();
 const Port = keys.PORT || 5002;
 
+const userRoutes = require("./routes/user.js");
+const uploadRoutes = require("./routes/upload.js");
+const postRoutes = require("./routes/post.js");
+
 app.set("trust proxy", 1);
 
 app.use(
