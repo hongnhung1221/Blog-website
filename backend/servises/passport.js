@@ -51,7 +51,6 @@ passport.use(
               .save()
               .then((user) => {
                 return done(null, user);
-                // done(null, user)
               });
           }
         });
@@ -63,17 +62,23 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log(user._id);
   done(null, user._id);
 });
 
 passport.deserializeUser(async (id, done) => {
   try {
-    console.log(id);
-    const user = await User.findById(id);
-    done(null, user);
+    console.log("Đang giải mã User ID:", id);
+
+    const foundUser = await User.findById(id);
+
+    if (!foundUser) {
+      console.log("Không tìm thấy User này trong DB Atlas!");
+      return done(null, false);
+    }
+
+    done(null, foundUser);
   } catch (err) {
-    console.error(err);
+    console.error("Lỗi hệ thống khi deserialize:", err);
     done(err, null);
   }
 });

@@ -142,9 +142,6 @@ router.get("/login/failed", (req, res) => {
 });
 
 router.post("/login/success", async (req, res) => {
-  console.log("USER:", req.user);
-  console.log("AUTH:", req.isAuthenticated());
-  console.log("SESSION:", req.session);
   if (req.isAuthenticated()) {
     const token = generateToken({ id: req.user._id.toString() }, "15d");
     return res.status(201).send({
