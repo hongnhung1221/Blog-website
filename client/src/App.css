@@ -384,9 +384,9 @@
   font-family: cursive;
   background: transparent;
 
-  background-color: rgba(209, 203, 203, 0.3);
+  background-color: #d0e2f0;
   border-radius: 15px;
-  border: solid 2px rgb(214, 214, 214);
+  border: solid 2px #bad1ed;
 }
 
 .inputnav:hover {
@@ -420,15 +420,15 @@
   margin-left: 2px;
   width: 35px;
   height: 35px;
-  background-color: rgba(209, 203, 203, 0.3);
+  background-color: #d0e2f0;
   display: grid;
-  border: solid 2px rgb(207, 207, 207);
+  border: solid 2px #bad1ed;
   place-items: center;
   z-index: 10000000;
 }
 
 .search .image svg {
-  fill: black;
+  fill: white;
 }
 
 .imagesearch {
