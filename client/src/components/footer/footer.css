@@ -11,15 +11,6 @@
   color: white;
 }
 
-.footer-info {
-  margin-top: 40px;
-}
-
-.footer-info p {
-  font-size: 14px;
-  color: #e1e1e1;
-}
-
 .footer-container {
   display: flex;
   width: 100%;
