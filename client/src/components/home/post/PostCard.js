@@ -227,7 +227,7 @@ function PostCard({ post, type }) {
             </div>
             <RWebShare
               data={{
-                text: "ALL BLOGS",
+                text: "MY BLOG",
                 url: `article/` + `${post && post._id ? post._id : -1}`,
                 title: `${post && post.title ? post.title : "N/A"}`,
               }}
@@ -365,7 +365,7 @@ function PostCard({ post, type }) {
                   >
                     <RWebShare
                       data={{
-                        text: "ALL BLOGS",
+                        text: "MY BLOG",
                         url: `article/` + `${post && post._id ? post._id : -1}`,
                         title: `${post && post.title}`,
                       }}

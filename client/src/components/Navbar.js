@@ -78,7 +78,7 @@ function Navbar({ postpage }) {
         <div className="img">
           <img src="/logo.png" alt="HOME" />
         </div>
-        <span style={{ textDecoration: "underline" }}>All Blogs</span>
+        <span style={{ textDecoration: "underline" }}>My Blog</span>
       </div>
       <div className="search" style={{ display: `${view3 ? "none" : ""}` }}>
         <div className="search_wrap">

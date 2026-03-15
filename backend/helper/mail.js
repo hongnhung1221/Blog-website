@@ -12,7 +12,7 @@ exports.sendResetCode = (email, name, code) => {
   const mailOptions = {
     from: keys.EMAIL_ID,
     to: email,
-    subject: "ALL Blogs-Forgot password varification code",
+    subject: "My Blog-Forgot password varification code",
     html: `<div 
       style=
       "max-width:700px;

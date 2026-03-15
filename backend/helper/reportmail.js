@@ -123,7 +123,7 @@ exports.sendReportMail = (email1, email2, name1, name2, reason, postid) => {
   const mailOptions2 = {
     from: keys.EMAIL_ID,
     to: email2,
-    subject: "All Blogs Support Team",
+    subject: "My Blog Support Team",
     html: `<div 
       style=
       "max-width:700px;

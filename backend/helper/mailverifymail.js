@@ -13,7 +13,7 @@ exports.sendVerifyCode = (email, name, code) => {
   const mailOptions = {
     from: keys.EMAIL_ID,
     to: email,
-    subject: "ALL Blogs Email Verification Code",
+    subject: "My Blog Email Verification Code",
     html: `<div 
       style=
       "max-width:700px;
