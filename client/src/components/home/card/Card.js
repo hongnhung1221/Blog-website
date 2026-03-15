@@ -15,7 +15,6 @@ function Card({ setmpost, setflag, mpost }) {
         bgClassName="bgimg"
         bgImage="/banner.jpg"
         bgImageAlt="Blog Image"
-        blur={4}
         strength={500}
       >
         <div className="dropdown">
