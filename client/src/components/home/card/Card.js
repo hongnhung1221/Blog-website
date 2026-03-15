@@ -13,7 +13,7 @@ function Card({ setmpost, setflag, mpost }) {
       <Parallax
         className="parallax-img"
         bgClassName="bgimg"
-        bgImage="/best.jpg"
+        bgImage="/banner.jpg"
         bgImageAlt="Blog Image"
         blur={4}
         strength={500}
